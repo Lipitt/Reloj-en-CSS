@@ -1,0 +1,161 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Reloj</title>
+        <style>
+        html {
+ 
+        background: url(https://images.unsplash.com/photo-1531229771154-3fbf32a1b048?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5bc23e9d8785107cf12c8d6a95e18790&auto=format&fit=crop&w=750&q=80);
+        background-size: cover;
+        font-size: 10px;
+    }
+        body {
+            font-size: 2rem;
+            align-items: center;
+            min-height: 100vh;
+            display:flex;
+            flex:1;
+            margin: 0;
+           
+            
+            
+        }
+        .container {
+            position: relative;
+            width: 30rem;
+            height: 30rem;
+            border: 20px solid white;
+            margin: 50px auto;
+            border-radius: 50%;
+            padding: 2rem;
+            box-shadow:
+                 0 0 0 4px rgba(0,0,0,0.1),
+                 inset 0 0 0 3px #EFEFEF,
+                 inset 0 0 10px black,
+                  0 0 10px rgba(0,0,0,0.2);
+    }
+       
+    
+         
+        
+            
+       .clock {
+            position:relative;
+            width: 100%;
+            height: 100%;
+            transform: translateY(-3px);
+            
+
+        }
+        .brazo {
+            width: 50%;
+            height: 6px;
+            background:black;
+            position: absolute;
+            top: 50%;
+            transform: rotate(90deg);
+            transform-origin: 100%;
+            transition: all 0.05s;
+            
+}
+
+       
+        .brazo-segundo {
+             height: 2px; 
+             
+             
+        }
+        .brazo-hora{
+            width: 40%;
+            margin-left: 30px;
+        }
+        .block{
+            width: 25px;
+            height: 25px;
+            background: black;
+            position: absolute;
+            top: 46%;
+            border-radius:50%;
+            left: 46%;
+           
+        }
+
+            
+
+        
+
+        </style>
+    </head>
+    <body>
+        <div class = "container">
+            <div class = "clock">
+                <div class="block"></div>
+                <div class="brazo brazo-hora"></div>
+                <div class="brazo brazo-minuto"></div>
+                <div class="brazo brazo-segundo"></div>
+            </div>
+        </div>
+        
+        
+        <script>
+        
+        const brazoSegundo = document.querySelector('.brazo-segundo');
+        const brazoMinuto = document.querySelector('.brazo-minuto');
+        const brazoHora = document.querySelector('.brazo-hora');
+
+
+        function setDate(){  
+        
+         
+        const esteMomento = new Date();
+        
+        //funcion para que los segundos tengan una trancision normal cuando pasan de 59 a 0.
+        const segundos = esteMomento.getSeconds();
+        if (segundos == 00) {
+            brazoSegundo.style.transition =  `none`;
+        
+        }else{
+            brazoSegundo.style.transition = `0.5s`;
+            
+        }
+        const segundosGrados = ((segundos / 60) * 360) + 90;
+        brazoSegundo.style.transform = `rotate(${segundosGrados}deg)`;
+
+
+        //lo mismo en minutos
+        const minutos = esteMomento.getMinutes();
+        if (minutos == 00) {
+            brazoMinuto.style.transition =  `none`;
+        
+        }else{
+            brazoMinuto.style.transition = `0.5s`;
+            
+        }
+        const minutosGrados = ((minutos / 60) * 360) + 90;
+        brazoMinuto.style.transform = `rotate(${minutosGrados}deg)`;  
+        
+       
+
+        //lo mismo en horas
+        const horas = esteMomento.getHours();
+      if (horas == 00) {
+            brazoHora.style.transition =  `none`;
+        
+        }else{
+            brazoHora.style.transition = `0.5s`;
+            
+        }
+        const horasGrados = ((horas / 12) * 360) + ((minutos/60)*30) + 90;
+        brazoHora.style.transform = `rotate(${horasGrados}deg)`;    
+         
+        
+       
+        }
+
+       setInterval(setDate, 1000 );
+
+        setDate();
+        
+        </script>
+    </body>
+</html>
