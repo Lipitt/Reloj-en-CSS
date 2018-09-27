@@ -1,7 +1,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Reloj</title>
+        <title>Reloj en CSS y JS</title>
         <style>
         html {
  
@@ -43,7 +43,7 @@
             position:relative;
             width: 100%;
             height: 100%;
-            transform: translateY(-3px);
+            transform: translateY(-3px); /* el desplazamiento es teniendo en cuenta la altura de los brazos del reloj */
             
 
         }
@@ -54,7 +54,8 @@
             position: absolute;
             top: 50%;
             transform: rotate(90deg);
-            transform-origin: 100%;
+            transform-origin: 100%; /* esta propiedad es la que hace que la rotacion se produzca desde el extremo
+            del brazo, como una aguja de reloj.  */
             transition: all 0.05s;
             
 }
@@ -109,8 +110,16 @@
          
         const esteMomento = new Date();
         
-        //funcion para que los segundos tengan una trancision normal cuando pasan de 59 a 0.
+      
+    
+
+
+        /* los segundos se igualan a grados y se le indica al brazo de segundos que rote en esa cantidad
+        de grados, pero cuando los segundos pasan de 59 a 0, el brazo de segundos vuelve hacia atras para 
+        llegar a la posicion 0 en vez de avanzar. Para evitar esto, hacemos que cuando los segundos sean iguales a 0
+         no haya transicion */
         const segundos = esteMomento.getSeconds();
+
         if (segundos == 00) {
             brazoSegundo.style.transition =  `none`;
         
@@ -122,7 +131,7 @@
         brazoSegundo.style.transform = `rotate(${segundosGrados}deg)`;
 
 
-        //lo mismo en minutos
+        //lo mismo que pasa en segundos, tambien aplica para minutos
         const minutos = esteMomento.getMinutes();
         if (minutos == 00) {
             brazoMinuto.style.transition =  `none`;
@@ -151,8 +160,10 @@
         
        
         }
-
-       setInterval(setDate, 1000 );
+        
+        /*usando setInterval hacemos que la funcion setDate, que define la hora en el reloj, se ejecute cada segundo
+        haciendo que funcione como un reloj real*/
+        setInterval(setDate, 1000 );
 
         setDate();
         
