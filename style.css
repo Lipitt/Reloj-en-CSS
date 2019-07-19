@@ -1,0 +1,77 @@
+html {
+ 
+        background: url(https://images.unsplash.com/photo-1531229771154-3fbf32a1b048?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=5bc23e9d8785107cf12c8d6a95e18790&auto=format&fit=crop&w=750&q=80);
+        background-size: cover;
+        font-size: 10px;
+    }
+        body {
+            font-size: 2rem;
+            align-items: center;
+            min-height: 100vh;
+            display:flex;
+            flex:1;
+            margin: 0;
+           
+            
+            
+        }
+        .container {
+            position: relative;
+            width: 30rem;
+            height: 30rem;
+            border: 20px solid white;
+            margin: 50px auto;
+            border-radius: 50%;
+            padding: 2rem;
+            box-shadow:
+                 0 0 0 4px rgba(0,0,0,0.1),
+                 inset 0 0 0 3px #EFEFEF,
+                 inset 0 0 10px black,
+                  0 0 10px rgba(0,0,0,0.2);
+    }
+       
+    
+         
+        
+            
+       .clock {
+            position:relative;
+            width: 100%;
+            height: 100%;
+            transform: translateY(-3px); /* el desplazamiento es teniendo en cuenta la altura de los brazos del reloj */
+            
+        }
+        .brazo {
+            width: 50%;
+            height: 6px;
+            background:black;
+            position: absolute;
+            top: 50%;
+            transform: rotate(90deg);
+            transform-origin: 100%; /* esta propiedad es la que hace que la rotacion se produzca desde el extremo
+            del brazo, como una aguja de reloj.  */
+            transition: all 0.05s;
+            
+}
+       
+        .brazo-segundo {
+             height: 2px; 
+             
+             
+        }
+        .brazo-hora{
+            width: 40%;
+            margin-left: 30px;
+        }
+        .block{
+            width: 25px;
+            height: 25px;
+            background: black;
+            position: absolute;
+            top: 46%;
+            border-radius:50%;
+            left: 46%;
+           
+        }
+            
+        
